@@ -1,0 +1,13 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "policyId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "beneficiary", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "payout", "type": "uint256" },
+      { "indexed": false, "internalType": "int256", "name": "oraclePrice", "type": "int256" }
+    ],
+    "name": "ClaimProcessed",
+    "type": "event"
+  }
+]

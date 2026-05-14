@@ -1,0 +1,174 @@
+﻿No files changed, compilation skipped
+
+Ran 6 tests for test/Lessons.t.sol:LessonsTest
+[PASS] test_fixedLessonReentrancyGuard() (gas: 423313)
+[PASS] test_fixedMintAdminCanMint() (gas: 734100)
+[PASS] test_fixedMintRequiresRole() (gas: 691992)
+[PASS] test_fixedWithdrawHappyPath() (gas: 226527)
+[PASS] test_vulnerableLessonDrainsETH() (gas: 571324)
+[PASS] test_vulnerableMintAnyone() (gas: 493642)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 11.18ms (8.95ms CPU time)
+
+Ran 2 tests for test/GovernanceFlow.t.sol:GovernanceFlowTest
+[PASS] test_cannotProposeWithoutVotes() (gas: 27096)
+[PASS] test_proposalLifecycleMintsThroughTimelock() (gas: 340278)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 14.52ms (2.20ms CPU time)
+
+Ran 18 tests for test/ProtocolCore.t.sol:ProtocolCoreTest
+[PASS] test_aliceDepositMintsShares() (gas: 112064)
+[PASS] test_bobWithdrawAfterDeposit() (gas: 100292)
+[PASS] test_claimPaysBuyer() (gas: 408174)
+[PASS] test_collateralDecimals() (gas: 5550)
+[PASS] test_doubleClaimReverts() (gas: 421138)
+[PASS] test_govTokenMinterIsTimelock() (gas: 7759)
+[PASS] test_insufficientLiquidityReverts() (gas: 293907)
+[PASS] test_pauseBlocksDeposit() (gas: 48346)
+[PASS] test_policyClaimProcessorWired() (gas: 14796)
+[PASS] test_policyViewMatches() (gas: 319341)
+[PASS] test_poolFactoryCreate() (gas: 397659)
+[PASS] test_poolFactoryCreate2Predict() (gas: 399165)
+[PASS] test_purchasePolicyRoutesFees() (gas: 324138)
+[PASS] test_staleOracleReverts() (gas: 363463)
+[PASS] test_treasuryOnlyTimelockWithdraws() (gas: 330253)
+[PASS] test_unpauseRestoresDeposit() (gas: 117006)
+[PASS] test_vaultAsset() (gas: 14817)
+[PASS] test_vaultClaimRoleGranted() (gas: 16271)
+Suite result: ok. 18 passed; 0 failed; 0 skipped; finished in 16.75ms (9.78ms CPU time)
+
+Ran 26 tests for test/SuiteA.t.sol:SuiteATest
+[PASS] testFuzz_premiumMathMatches(uint128,uint16,uint16) (runs: 256, ╬╝: 5673, ~: 5673)
+[PASS] testFuzz_premiumMonotonicInDuration(uint128,uint32,uint32) (runs: 256, ╬╝: 5457, ~: 5457)
+[PASS] testFuzz_premiumMonotonicInRate(uint128,uint16,uint16) (runs: 256, ╬╝: 5050, ~: 5050)
+[PASS] test_badOracleAnswerReverts() (gas: 355069)
+[PASS] test_claimHeartbeat() (gas: 12485)
+[PASS] test_claimIncreasesTotalPayouts() (gas: 406651)
+[PASS] test_claimProcessorPauseBlocks() (gas: 45576)
+[PASS] test_collateralSymbol() (gas: 12039)
+[PASS] test_convertToAssetsMatches() (gas: 112213)
+[PASS] test_expiredPolicyCannotClaim() (gas: 356766)
+[PASS] test_gas_mulDivBenchmarkRecordsUsage() (gas: 989)
+[PASS] test_governorQuorumNumerator() (gas: 10021)
+[PASS] test_maxDepositNonZero() (gas: 12723)
+[PASS] test_maxMintNonZero() (gas: 12712)
+[PASS] test_policyAnnualBps() (gas: 12605)
+[PASS] test_policyPauseBlocksPurchase() (gas: 48239)
+[PASS] test_policyTreasuryFeeBps() (gas: 12639)
+[PASS] test_timelockMinDelay() (gas: 7620)
+[PASS] test_treasuryReceivesERC20Premiums() (gas: 321754)
+[PASS] test_triggerBelowPath() (gas: 407413)
+[PASS] test_upgradeVaultToV2() (gas: 2212530)
+[PASS] test_vaultName() (gas: 17019)
+[PASS] test_vaultPreviewDepositPositive() (gas: 26218)
+[PASS] test_vaultPreviewMintRoundTrip() (gas: 26203)
+[PASS] test_vaultShareBalanceOfAlice() (gas: 110505)
+[PASS] test_vaultTotalAssetsTracksDeposits() (gas: 111031)
+Suite result: ok. 26 passed; 0 failed; 0 skipped; finished in 500.05ms (494.51ms CPU time)
+
+Ran 4 tests for test/ForkArbSepolia.t.sol:ForkArbSepoliaTest
+[PASS] testFork_blockNumberAdvances() (gas: 4862)
+[PASS] testFork_chainIdMatchesArbSepolia() (gas: 4348)
+[PASS] testFork_deployMockErc20() (gas: 455381)
+[PASS] testFork_readEthUsdIfConfigured() (gas: 4820)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 905.32ms (2.99s CPU time)
+
+Ran 30 tests for test/MiscB.t.sol:MiscBTest
+[PASS] test_aliceHasCollateral() (gas: 10010)
+[PASS] test_bobHasCollateral() (gas: 9988)
+[PASS] test_claimDefaultAdminIsDeployer() (gas: 16203)
+[PASS] test_claimProcessorFeed() (gas: 14823)
+[PASS] test_claimProcessorPolicy() (gas: 14798)
+[PASS] test_claimProcessorVault() (gas: 14800)
+[PASS] test_govTokenName() (gas: 12013)
+[PASS] test_govTokenNoncesStartsZero() (gas: 10026)
+[PASS] test_govTokenSymbol() (gas: 11968)
+[PASS] test_governorName() (gas: 12082)
+[PASS] test_governorProposalThresholdReadable() (gas: 7790)
+[PASS] test_governorQuorumAtCurrentBlock() (gas: 19358)
+[PASS] test_governorStateNonexistentReverts() (gas: 11036)
+[PASS] test_governorTimelockAddress() (gas: 10019)
+[PASS] test_governorTokenAddress() (gas: 7858)
+[PASS] test_governorVotingDelayReadable() (gas: 7709)
+[PASS] test_governorVotingPeriodReadable() (gas: 7591)
+[PASS] test_policyAssetIsCollateral() (gas: 14802)
+[PASS] test_policyDefaultAdminIsDeployer() (gas: 16139)
+[PASS] test_policyNextIdStartsZero() (gas: 12574)
+[PASS] test_timelockHasGovernorProposer() (gas: 10830)
+[PASS] test_timelockOpenExecutor() (gas: 8711)
+[PASS] test_treasuryImmutableTimelock() (gas: 7694)
+[PASS] test_vaultAssetIsCollateral() (gas: 14855)
+[PASS] test_vaultDecimals() (gas: 17962)
+[PASS] test_vaultDefaultAdminIsDeployer() (gas: 16136)
+[PASS] test_vaultImplCodeSize() (gas: 4987)
+[PASS] test_vaultPauserIsDeployer() (gas: 16190)
+[PASS] test_vaultShareSymbol() (gas: 16967)
+[PASS] test_vaultUpgraderIsDeployer() (gas: 16224)
+Suite result: ok. 30 passed; 0 failed; 0 skipped; finished in 21.09s (7.06ms CPU time)
+
+Ran 11 tests for test/FuzzSuite.t.sol:FuzzSuiteTest
+[PASS] testFuzz_claimDoesNotRevertWhenFunded(int256) (runs: 256, ╬╝: 404420, ~: 404431)
+[PASS] testFuzz_convertToSharesMonotonic(uint96,uint96) (runs: 256, ╬╝: 29270, ~: 29569)
+[PASS] testFuzz_depositWithdrawRoundTrip(uint96) (runs: 256, ╬╝: 99819, ~: 99916)
+[PASS] testFuzz_maxWithdrawBound(uint96) (runs: 256, ╬╝: 115859, ~: 116012)
+[PASS] testFuzz_multipleDeposits(uint8,uint96) (runs: 256, ╬╝: 165486, ~: 155242)
+[PASS] testFuzz_oraclePriceClaimWindow(int256,bool) (runs: 256, ╬╝: 408231, ~: 408231)
+[PASS] testFuzz_pauseUnpauseIdempotent(uint8) (runs: 256, ╬╝: 153902, ~: 151146)
+[PASS] testFuzz_policyIdIncrements(uint8) (runs: 256, ╬╝: 546218, ~: 578053)
+[PASS] testFuzz_purchasePolicyPremiumPositive(uint128,uint8) (runs: 256, ╬╝: 317176, ~: 317254)
+[PASS] testFuzz_treasuryFeeNonNegative(uint128,uint8) (runs: 256, ╬╝: 323371, ~: 323452)
+[PASS] testFuzz_vaultShareNonZero(uint96) (runs: 256, ╬╝: 109890, ~: 110043)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 21.09s (42.85s CPU time)
+
+Ran 5 tests for test/invariant/VaultInvariant.t.sol:VaultInvariantTest
+[PASS] invariant_actorSharesLteTotalSupply() (runs: 256, calls: 128000, reverts: 0)
+
+тХн--------------+----------+-------+---------+----------тХо
+| Contract     | Selector | Calls | Reverts | Discards |
++======================================================+
+| VaultHandler | deposit  | 63663 | 0       | 0        |
+|--------------+----------+-------+---------+----------|
+| VaultHandler | withdraw | 64337 | 0       | 0        |
+тХ░--------------+----------+-------+---------+----------тХп
+
+[PASS] invariant_sharePriceSane() (runs: 256, calls: 128000, reverts: 0)
+
+тХн--------------+----------+-------+---------+----------тХо
+| Contract     | Selector | Calls | Reverts | Discards |
++======================================================+
+| VaultHandler | deposit  | 63663 | 0       | 0        |
+|--------------+----------+-------+---------+----------|
+| VaultHandler | withdraw | 64337 | 0       | 0        |
+тХ░--------------+----------+-------+---------+----------тХп
+
+[PASS] invariant_totalSupplyBounded() (runs: 256, calls: 128000, reverts: 0)
+
+тХн--------------+----------+-------+---------+----------тХо
+| Contract     | Selector | Calls | Reverts | Discards |
++======================================================+
+| VaultHandler | deposit  | 63663 | 0       | 0        |
+|--------------+----------+-------+---------+----------|
+| VaultHandler | withdraw | 64337 | 0       | 0        |
+тХ░--------------+----------+-------+---------+----------тХп
+
+[PASS] invariant_treasuryAccounting() (runs: 256, calls: 128000, reverts: 0)
+
+тХн--------------+----------+-------+---------+----------тХо
+| Contract     | Selector | Calls | Reverts | Discards |
++======================================================+
+| VaultHandler | deposit  | 63663 | 0       | 0        |
+|--------------+----------+-------+---------+----------|
+| VaultHandler | withdraw | 64337 | 0       | 0        |
+тХ░--------------+----------+-------+---------+----------тХп
+
+[PASS] invariant_vaultSolvent() (runs: 256, calls: 128000, reverts: 0)
+
+тХн--------------+----------+-------+---------+----------тХо
+| Contract     | Selector | Calls | Reverts | Discards |
++======================================================+
+| VaultHandler | deposit  | 63663 | 0       | 0        |
+|--------------+----------+-------+---------+----------|
+| VaultHandler | withdraw | 64337 | 0       | 0        |
+тХ░--------------+----------+-------+---------+----------тХп
+
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 24.77s (107.93s CPU time)
+
+Ran 8 test suites in 24.79s (68.40s CPU time): 102 tests passed, 0 failed, 0 skipped (102 total tests)

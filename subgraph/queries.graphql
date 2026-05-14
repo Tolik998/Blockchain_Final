@@ -1,0 +1,57 @@
+query RecentDeposits($first: Int = 5) {
+  vaultDeposits(first: $first, orderBy: timestamp, orderDirection: desc) {
+    id
+    vault
+    owner
+    assets
+    shares
+    timestamp
+    txHash
+  }
+}
+
+query RecentWithdraws($first: Int = 5) {
+  vaultWithdraws(first: $first, orderBy: timestamp, orderDirection: desc) {
+    id
+    vault
+    receiver
+    owner
+    assets
+    shares
+    timestamp
+  }
+}
+
+query RecentPolicies($first: Int = 5) {
+  policyPurchases(first: $first, orderBy: timestamp, orderDirection: desc) {
+    id
+    policyId
+    buyer
+    coverage
+    premium
+    expiration
+    timestamp
+  }
+}
+
+query RecentClaims($first: Int = 5) {
+  claimProcesseds(first: $first, orderBy: timestamp, orderDirection: desc) {
+    id
+    policyId
+    beneficiary
+    payout
+    oraclePrice
+    timestamp
+  }
+}
+
+query RecentTreasuryMoves($first: Int = 5) {
+  treasuryWithdraws(first: $first, orderBy: timestamp, orderDirection: desc) {
+    id
+    treasury
+    token
+    to
+    amount
+    timestamp
+  }
+}

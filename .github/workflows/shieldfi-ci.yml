@@ -1,0 +1,52 @@
+name: shieldfi-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install npm deps (OpenZeppelin + Chainlink)
+        run: npm install
+      - name: Forge build
+        run: forge build --sizes
+      - name: Forge test
+        run: forge test -vvv
+      - name: Forge coverage (lcov)
+        run: forge coverage --report lcov
+      - name: Solhint
+        run: npm run lint:sol
+      - name: Prettier check
+        run: npm run lint:prettier
+      - name: Slither
+        uses: crytic/slither-action@v0.4.0
+        with:
+          node-version: "22"
+          fail-on: high
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package.json
+      - name: Install web deps
+        run: npm install
+      - name: Build web
+        run: npm run build

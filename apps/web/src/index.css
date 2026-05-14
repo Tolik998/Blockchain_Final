@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-night-950 text-slate-100 antialiased;
+}
+
+.glass {
+  @apply bg-night-900/70 border border-night-700/60 backdrop-blur-md shadow-xl rounded-2xl;
+}

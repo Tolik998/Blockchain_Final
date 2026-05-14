@@ -1,0 +1,14 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "policyId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "coverage", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "premium", "type": "uint256" },
+      { "indexed": false, "internalType": "uint48", "name": "expiration", "type": "uint48" }
+    ],
+    "name": "PolicyPurchased",
+    "type": "event"
+  }
+]

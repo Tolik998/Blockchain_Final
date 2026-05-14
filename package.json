@@ -1,0 +1,22 @@
+{
+  "name": "shieldfi",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ShieldFi — decentralized insurance protocol (capstone)",
+  "scripts": {
+    "lint:sol": "node scripts/run-solhint.mjs",
+    "lint:prettier": "prettier --check \"**/*.{js,ts,tsx,json,md,yml,yaml}\"",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md,yml,yaml}\"",
+    "frontend:dev": "npm run dev --prefix apps/web",
+    "frontend:build": "npm run build --prefix apps/web",
+    "frontend:lint": "npm run lint --prefix apps/web"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "@openzeppelin/contracts-upgradeable": "^5.4.0"
+  },
+  "devDependencies": {
+    "prettier": "3.5.3",
+    "solhint": "^6.0.0"
+  }
+}

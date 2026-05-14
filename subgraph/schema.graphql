@@ -1,0 +1,58 @@
+type VaultDeposit @entity(immutable: true) {
+  id: ID!
+  vault: Bytes!
+  sender: Bytes!
+  owner: Bytes!
+  assets: BigInt!
+  shares: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}
+
+type VaultWithdraw @entity(immutable: true) {
+  id: ID!
+  vault: Bytes!
+  sender: Bytes!
+  receiver: Bytes!
+  owner: Bytes!
+  assets: BigInt!
+  shares: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}
+
+type PolicyPurchase @entity(immutable: true) {
+  id: ID!
+  policyId: BigInt!
+  buyer: Bytes!
+  coverage: BigInt!
+  premium: BigInt!
+  expiration: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}
+
+type ClaimProcessed @entity(immutable: true) {
+  id: ID!
+  policyId: BigInt!
+  beneficiary: Bytes!
+  payout: BigInt!
+  oraclePrice: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}
+
+type TreasuryWithdraw @entity(immutable: true) {
+  id: ID!
+  treasury: Bytes!
+  token: Bytes!
+  to: Bytes!
+  amount: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}

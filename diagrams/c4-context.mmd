@@ -1,0 +1,9 @@
+```mermaid
+C4Context
+title ShieldFi Context
+Person(u, "Users", "Underwriters + policyholders + governors")
+System(shieldfi, "ShieldFi smart contracts", "Vault + policies + claims + DAO")
+System_Ext(cl, "Chainlink", "Reference feeds")
+Rel(u, shieldfi, "transacts")
+Rel(shieldfi, cl, "reads prices")
+```
