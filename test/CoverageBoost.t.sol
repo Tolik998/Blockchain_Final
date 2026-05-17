@@ -545,7 +545,7 @@ contract IncompleteRoundFeed is AggregatorV3Interface {
     function decimals() external pure override returns (uint8) { return 8; }
     function description() external pure override returns (string memory) { return "incomplete"; }
     function version() external pure override returns (uint256) { return 1; }
-    function getRoundData(uint80) external pure override
+    function getRoundData(uint80) external view override
         returns (uint80, int256, uint256, uint256, uint80)
     {
         return (1, 2000e8, block.timestamp, block.timestamp, 0);
