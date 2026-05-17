@@ -1,4 +1,4 @@
-﻿{
+{
   "filter_paths": "contracts/lessons/vulnerable,contracts/mocks,test,script,lib,node_modules",
   "exclude_dependencies": true
 }
