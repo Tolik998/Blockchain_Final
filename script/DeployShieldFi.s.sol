@@ -14,6 +14,8 @@ import {ProtocolTreasury} from "../contracts/treasury/ProtocolTreasury.sol";
 import {ShieldGovToken} from "../contracts/token/ShieldGovToken.sol";
 import {ShieldProtocolGovernor} from "../contracts/governance/ShieldProtocolGovernor.sol";
 import {AggregatorV3Interface} from "../contracts/interfaces/AggregatorV3Interface.sol";
+import {PolicyNFT} from "../contracts/token/PolicyNFT.sol";
+import {ShieldAMM} from "../contracts/amm/ShieldAMM.sol";
 
 /**
  * @title DeployShieldFi
@@ -41,6 +43,8 @@ contract DeployShieldFi is Script {
     InsuranceVault public vault;
     PolicyManager public policy;
     ClaimProcessor public claim;
+    PolicyNFT public policyNFT;
+    ShieldAMM public amm;
 
     function _deployPolicyManager(
         address collateral,
@@ -150,6 +154,12 @@ contract DeployShieldFi is Script {
 
         policy.setClaimProcessor(address(claim));
         vault.grantRole(vault.CLAIM_PAYER_ROLE(), address(claim));
+
+        // Deploy PolicyNFT — ERC-721 representing each policy
+        policyNFT = new PolicyNFT(deployer, address(policy));
+
+        // Deploy ShieldAMM — constant-product AMM for collateral/govToken pair
+        amm = new ShieldAMM(collateral, address(gov));
     }
 
     function run() external {
@@ -168,5 +178,7 @@ contract DeployShieldFi is Script {
         console2.log("Vault", address(vault));
         console2.log("PolicyManager", address(policy));
         console2.log("ClaimProcessor", address(claim));
+        console2.log("PolicyNFT", address(policyNFT));
+        console2.log("ShieldAMM", address(amm));
     }
 }
