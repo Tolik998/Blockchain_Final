@@ -39,6 +39,8 @@ jobs:
 
       - name: Forge test
         run: forge test -vvv
+        env:
+          ARB_SEPOLIA_RPC_URL: https://ethereum-sepolia-rpc.publicnode.com
 
       - name: Forge coverage (informational)
         run: forge coverage --report summary 2>&1 | tee coverage-summary.txt || true
