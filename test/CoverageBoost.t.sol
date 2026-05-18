@@ -717,11 +717,11 @@ contract EdgeCaseCoverageTest is ShieldFiBase {
         assertEq(policy.nextPolicyId(), 2);
     }
 
-    /// @dev Vault deposit with zero assets should revert (ERC4626 invariant)
-    function test_vaultDepositZeroReverts() public {
+    /// @dev Vault deposit with zero assets mints zero shares (OZ ERC4626 v5 behaviour)
+    function test_vaultDepositZeroMintsZeroShares() public {
         vm.prank(alice);
-        vm.expectRevert();
-        vault.deposit(0, alice);
+        uint256 shares = vault.deposit(0, alice);
+        assertEq(shares, 0);
     }
 
     /// @dev maxWithdraw is bounded by total assets
