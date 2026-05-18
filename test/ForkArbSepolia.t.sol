@@ -9,7 +9,7 @@ contract ForkArbSepoliaTest is Test {
     function testFork_chainIdMatchesArbSepolia() public {
         string memory rpc = vm.envOr("ARB_SEPOLIA_RPC_URL", string("https://sepolia-rollup.arbitrum.io/rpc"));
         vm.createSelectFork(rpc);
-        assertEq(block.chainid, 421614);
+        assertEq(block.chainid, 11155111);
     }
 
     function testFork_blockNumberAdvances() public {

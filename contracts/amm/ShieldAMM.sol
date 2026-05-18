@@ -190,6 +190,10 @@ contract ShieldAMM is ERC20, ReentrancyGuard {
             }
         }
 
+        // ── Interactions (in) ─────────────────────────────────────────────────
+        token0.safeTransferFrom(msg.sender, address(this), amount0);
+        token1.safeTransferFrom(msg.sender, address(this), amount1);
+
         // ── Effects ───────────────────────────────────────────────────────────
         uint256 totalSupply_ = totalSupply();
         if (totalSupply_ == 0) {
@@ -206,10 +210,6 @@ contract ShieldAMM is ERC20, ReentrancyGuard {
         if (liquidity == 0) revert InsufficientLiquidity();
         _mint(to, liquidity);
         _updateReserves(uint112(res0 + amount0), uint112(res1 + amount1));
-
-        // ── Interactions ──────────────────────────────────────────────────────
-        token0.safeTransferFrom(msg.sender, address(this), amount0);
-        token1.safeTransferFrom(msg.sender, address(this), amount1);
 
         emit LiquidityAdded(to, amount0, amount1, liquidity);
     }
@@ -285,6 +285,9 @@ contract ShieldAMM is ERC20, ReentrancyGuard {
         if (amountOut < minAmountOut) revert SlippageExceeded();
         if (amountOut == 0) revert InsufficientOutputAmount();
 
+        // ── Interactions (in) ─────────────────────────────────────────────────
+        IERC20(tokenIn).safeTransferFrom(msg.sender, address(this), amountIn);
+
         // ── Effects ───────────────────────────────────────────────────────────
         (uint112 newRes0, uint112 newRes1) = isToken0In
             ? (uint112(res0 + amountIn), uint112(res1 - amountOut))
@@ -298,8 +301,7 @@ contract ShieldAMM is ERC20, ReentrancyGuard {
 
         _updateReserves(newRes0, newRes1);
 
-        // ── Interactions ──────────────────────────────────────────────────────
-        IERC20(tokenIn).safeTransferFrom(msg.sender, address(this), amountIn);
+        // ── Interactions (out) ────────────────────────────────────────────────
         IERC20(isToken0In ? address(token1) : address(token0)).safeTransfer(to, amountOut);
 
         emit Swap(msg.sender, tokenIn, amountIn, amountOut, to);

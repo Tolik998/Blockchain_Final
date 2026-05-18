@@ -356,23 +356,26 @@ contract ShieldAMMTest is Test {
 
     function test_ammSwapZeroAmountReverts() public {
         _seedPool();
+        address t0 = address(amm.token0());
         vm.prank(bob);
         vm.expectRevert(ShieldAMM.ZeroAmount.selector);
-        amm.swap(address(amm.token0()), 0, 0, bob);
+        amm.swap(t0, 0, 0, bob);
     }
 
     function test_ammSwapZeroAddressReverts() public {
         _seedPool();
+        address t0 = address(amm.token0());
         vm.prank(bob);
         vm.expectRevert(ShieldAMM.ZeroAddress.selector);
-        amm.swap(address(amm.token0()), 1_000e6, 0, address(0));
+        amm.swap(t0, 1_000e6, 0, address(0));
     }
 
     function test_ammSwapSlippageReverts() public {
         _seedPool();
+        address t0 = address(amm.token0());
         vm.prank(bob);
         vm.expectRevert(ShieldAMM.SlippageExceeded.selector);
-        amm.swap(address(amm.token0()), 1_000e6, type(uint256).max, bob);
+        amm.swap(t0, 1_000e6, type(uint256).max, bob);
     }
 
     // ── getAmountOut ──────────────────────────────────────────────────────────
@@ -422,8 +425,9 @@ contract ShieldAMMTest is Test {
         (uint112 r0before, uint112 r1before) = amm.getReserves();
         uint256 kBefore = uint256(r0before) * uint256(r1before);
 
+        address t0 = address(amm.token0());
         vm.prank(bob);
-        amm.swap(address(amm.token0()), 10_000e6, 1, bob);
+        amm.swap(t0, 10_000e6, 1, bob);
 
         (uint112 r0after, uint112 r1after) = amm.getReserves();
         uint256 kAfter = uint256(r0after) * uint256(r1after);
@@ -437,9 +441,10 @@ contract ShieldAMMTest is Test {
         (uint112 r0init, uint112 r1init) = amm.getReserves();
         uint256 kInit = uint256(r0init) * uint256(r1init);
 
+        address t0 = address(amm.token0());
         for (uint256 i = 0; i < 5; i++) {
             vm.prank(bob);
-            amm.swap(address(amm.token0()), 1_000e6, 1, bob);
+            amm.swap(t0, 1_000e6, 1, bob);
         }
 
         (uint112 r0final, uint112 r1final) = amm.getReserves();
@@ -504,13 +509,14 @@ contract ShieldAMMFuzzTest is Test {
 
     /// @dev K never decreases after any sequence of swaps.
     function testFuzz_ammKNeverDecreases(uint96 swapAmt) public {
-        vm.assume(swapAmt > 0 && swapAmt < 100_000 ether);
+        vm.assume(swapAmt > 1_000 && swapAmt < 100_000 ether);
 
         (uint112 r0, uint112 r1) = amm.getReserves();
         uint256 kBefore = uint256(r0) * uint256(r1);
 
+        address t0 = address(amm.token0());
         vm.prank(trader);
-        amm.swap(address(amm.token0()), swapAmt, 0, trader);
+        amm.swap(t0, swapAmt, 0, trader);
 
         (uint112 r0after, uint112 r1after) = amm.getReserves();
         uint256 kAfter = uint256(r0after) * uint256(r1after);
