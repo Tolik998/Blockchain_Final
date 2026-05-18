@@ -28,7 +28,7 @@ export function Dashboard() {
       {!configured ? (
         <div className="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-amber-100 text-sm">
           Set <code className="text-amber-50">VITE_*</code> addresses in <code className="text-amber-50">apps/web/.env</code>{' '}
-          after deployment so the UI can submit transactions to your Arbitrum Sepolia contracts.
+          after deployment so the UI can submit transactions to your deployed contracts.
         </div>
       ) : null}
       <div className="grid md:grid-cols-2 gap-4">

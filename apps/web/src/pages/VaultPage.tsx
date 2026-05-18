@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { parseUnits } from 'viem';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
 
 import { CONTRACTS, erc20Abi, isConfigured, vaultAbi } from '../config/contracts';
 import { formatTxError } from '../lib/errors';
@@ -51,16 +50,12 @@ export function VaultPage() {
       const d = Number(decimals ?? 6);
       const amount = parseUnits(assets, d);
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.collateral,
         abi: erc20Abi,
         functionName: 'approve',
         args: [CONTRACTS.vault, amount],
       });
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.vault,
         abi: vaultAbi,
         functionName: 'deposit',
@@ -77,8 +72,6 @@ export function VaultPage() {
       if (!address || !shareBal) throw new Error('Nothing to withdraw');
       if (!isConfigured(CONTRACTS.vault)) throw new Error('Configure vault address first');
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.vault,
         abi: vaultAbi,
         functionName: 'redeem',
@@ -88,6 +81,10 @@ export function VaultPage() {
       setErr(formatTxError(e));
     }
   }
+
+  const d = Number(decimals ?? 6);
+  const fmtBal = bal !== undefined ? (Number(bal) / 10 ** d).toFixed(2) : '—';
+  const fmtShares = shareBal !== undefined ? (Number(shareBal) / 10 ** d).toFixed(6) : '—';
 
   return (
     <div className="space-y-6 max-w-xl">
@@ -99,11 +96,11 @@ export function VaultPage() {
       <div className="glass p-6 space-y-4">
         <div>
           <label className="block text-xs uppercase tracking-wide text-slate-400 mb-1">Collateral balance</label>
-          <p className="font-mono text-sm">{bal?.toString() ?? '—'}</p>
+          <p className="font-mono text-sm">{fmtBal}</p>
         </div>
         <div>
           <label className="block text-xs uppercase tracking-wide text-slate-400 mb-1">Vault shares</label>
-          <p className="font-mono text-sm">{shareBal?.toString() ?? '—'}</p>
+          <p className="font-mono text-sm">{fmtShares}</p>
         </div>
         <div>
           <label className="block text-xs uppercase tracking-wide text-slate-400 mb-1">Deposit amount</label>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { parseUnits } from 'viem';
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
 
 import { CONTRACTS, erc20Abi, isConfigured, policyAbi } from '../config/contracts';
 import { formatTxError } from '../lib/errors';
@@ -56,16 +55,12 @@ export function BuyPage() {
       if (!cov || !validDuration || !premium) throw new Error('Enter a valid coverage and duration');
       const triggerPrice = BigInt(trigger);
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.collateral,
         abi: erc20Abi,
         functionName: 'approve',
         args: [CONTRACTS.policy, premium],
       });
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.policy,
         abi: policyAbi,
         functionName: 'purchasePolicy',

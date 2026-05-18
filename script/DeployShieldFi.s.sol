@@ -33,8 +33,8 @@ import {ShieldAMM} from "../contracts/amm/ShieldAMM.sol";
  *      - `ANNUAL_PREMIUM_BPS` (default 800)
  */
 contract DeployShieldFi is Script {
-    uint48 public constant VOTING_DELAY_BLOCKS = 345600;
-    uint32 public constant VOTING_PERIOD_BLOCKS = uint32(345600 * 7);
+    uint48 public constant VOTING_DELAY_BLOCKS = 43200;
+    uint32 public constant VOTING_PERIOD_BLOCKS = 302400;
 
     TimelockController public timelock;
     ProtocolTreasury public treasury;

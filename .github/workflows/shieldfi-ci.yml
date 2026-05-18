@@ -51,6 +51,30 @@ jobs:
       - name: Solhint lint
         run: npm run lint:sol || true
 
+      - name: Install Slither
+        run: pip install slither-analyzer
+
+      - name: Run Slither
+        run: |
+          slither . --config-file slither.config.json \
+            --sarif slither-results.sarif \
+            2>&1 | tee slither-output.txt
+          # Fail CI if any High or Medium findings are present
+          if grep -qE "\] High|\] Medium" slither-output.txt; then
+            echo "Slither found High or Medium severity issues"
+            exit 1
+          fi
+          echo "Slither: no High/Medium findings"
+
+      - name: Upload Slither results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: slither-results
+          path: |
+            slither-output.txt
+            slither-results.sarif
+
   web:
     runs-on: ubuntu-latest
     defaults:

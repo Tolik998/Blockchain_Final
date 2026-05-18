@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useChainId } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
+import { sepolia } from "wagmi/chains";
 
 import { Dashboard } from './pages/Dashboard';
 import { VaultPage } from './pages/VaultPage';
@@ -13,7 +13,7 @@ import { AnalyticsPage } from './pages/AnalyticsPage';
 
 function Layout({ children }: { children: ReactNode }) {
   const chainId = useChainId();
-  const wrong = chainId !== arbitrumSepolia.id;
+  const wrong = chainId !== sepolia.id;
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     `px-3 py-2 rounded-lg text-sm font-medium transition ${
@@ -55,7 +55,7 @@ function Layout({ children }: { children: ReactNode }) {
         </div>
         {wrong ? (
           <div className="bg-amber-500/10 border-t border-amber-500/30 text-amber-200 text-sm px-4 py-2 text-center">
-            Switch your wallet to Arbitrum Sepolia (chain id {arbitrumSepolia.id}) to interact with ShieldFi
+            Switch your wallet to Sepolia (chain id {sepolia.id}) to interact with ShieldFi
             deployments.
           </div>
         ) : null}

@@ -18,11 +18,11 @@
 | Fuzz tests | `test/FuzzSuite.t.sol`, `test/SuiteA.t.sol` | 14 `testFuzz_*` functions |
 | Invariant tests | `test/invariant/VaultInvariant.t.sol` | 5 invariants × 256 runs × 128k calls each |
 | Arbitrum Sepolia readiness | `script/DeployShieldFi.s.sol`, `test/ForkArbSepolia.t.sol` | Fork tests validate chain id 421614, block advancement, ERC20 deployment |
-| Frontend integration | `apps/web/src/` | Wagmi + RainbowKit configured for Arb Sepolia, guarded writes, typed contracts |
+| Frontend integration | `apps/web/src/` | Wagmi + RainbowKit, guarded writes, typed contracts; Analytics page queries subgraph live |
 | Subgraph indexing | `subgraph/schema.graphql`, `subgraph/src/mapping.ts` | 5 entity types: VaultDeposit, VaultWithdraw, PolicyPurchase, ClaimProcessed, TreasuryWithdraw |
 | Security reporting | `audits/SECURITY_AUDIT_REPORT.md`, `slither.config.json` | 4 findings (all Low/Informational), Slither gate on CI |
 | Gas optimization analysis | `contracts/math/GasOptimizedMath.sol`, `docs/GAS_OPTIMIZATION_REPORT.md` | `SuiteA::test_gas_mulDivBenchmarkRecordsUsage`, fuzz equivalence |
-| CI pipeline | `.github/workflows/shieldfi-ci.yml` | forge build + test + coverage + solhint + prettier + slither + web build |
+| CI pipeline | `.github/workflows/shieldfi-ci.yml` | forge build + test + coverage + solhint + Slither (High/Medium gate) + web build |
 
 ---
 

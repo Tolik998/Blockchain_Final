@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
 
 import { CONTRACTS, governorAbi, isConfigured, votesAbi } from '../config/contracts';
 import { formatTxError } from '../lib/errors';
@@ -45,8 +44,6 @@ export function GovernancePage() {
       if (!address) throw new Error('Connect wallet');
       if (!isConfigured(CONTRACTS.govToken)) throw new Error('Configure governance token address first');
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.govToken,
         abi: votesAbi,
         functionName: 'delegate',
@@ -64,8 +61,6 @@ export function GovernancePage() {
       if (!isConfigured(CONTRACTS.governor)) throw new Error('Configure governor address first');
       if (pid === undefined) throw new Error('Enter a valid proposal id');
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.governor,
         abi: governorAbi,
         functionName: 'castVote',

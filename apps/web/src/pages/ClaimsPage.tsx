@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useWriteContract, useAccount } from 'wagmi';
-import { arbitrumSepolia } from 'wagmi/chains';
 
 import { CONTRACTS, claimAbi, isConfigured } from '../config/contracts';
 import { formatTxError } from '../lib/errors';
@@ -17,8 +16,6 @@ export function ClaimsPage() {
       if (!address) throw new Error('Connect wallet');
       if (!isConfigured(CONTRACTS.claim)) throw new Error('Configure claim processor address first');
       await writeContractAsync({
-        chain: arbitrumSepolia,
-        account: address,
         address: CONTRACTS.claim,
         abi: claimAbi,
         functionName: 'processClaim',
