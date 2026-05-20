@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: InsuranceVault
-    network: arbitrum-sepolia
+    network: sepolia
     source:
-      address: "0x0000000000000000000000000000000000000000"
+      address: "0x310b42e5092def354c30844503fba2925dccac59"
       abi: VaultAbi
-      startBlock: 0
+      startBlock: 10800000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -27,13 +27,14 @@ dataSources:
           handler: handleVaultDeposit
         - event: Withdraw(indexed address,indexed address,indexed address,uint256,uint256)
           handler: handleVaultWithdraw
+
   - kind: ethereum
     name: PolicyManager
-    network: arbitrum-sepolia
+    network: sepolia
     source:
-      address: "0x0000000000000000000000000000000000000000"
+      address: "0x770dbcec771216667a4558deb649a51c44cc589d"
       abi: PolicyAbi
-      startBlock: 0
+      startBlock: 10800000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -47,13 +48,14 @@ dataSources:
       eventHandlers:
         - event: PolicyPurchased(indexed uint256,indexed address,uint256,uint256,uint48)
           handler: handlePolicyPurchased
+
   - kind: ethereum
     name: ClaimProcessor
-    network: arbitrum-sepolia
+    network: sepolia
     source:
-      address: "0x0000000000000000000000000000000000000000"
+      address: "0x644635684fe8ace38a58e64f247774a40604dd56"
       abi: ClaimAbi
-      startBlock: 0
+      startBlock: 10800000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -67,13 +69,14 @@ dataSources:
       eventHandlers:
         - event: ClaimProcessed(indexed uint256,indexed address,uint256,int256)
           handler: handleClaimProcessed
+
   - kind: ethereum
     name: ProtocolTreasury
-    network: arbitrum-sepolia
+    network: sepolia
     source:
-      address: "0x0000000000000000000000000000000000000000"
+      address: "0xC3965d1Cf88F42350658d370c1e72fDF4A27151B"
       abi: TreasuryAbi
-      startBlock: 0
+      startBlock: 10800000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
